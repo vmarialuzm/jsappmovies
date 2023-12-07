@@ -96,7 +96,7 @@ function addLike(imdbID) {
     divparent.querySelector("a").outerHTML = `
     <div class="d-flex justify-content-between align-items-center">
         <p class="text-primary m-0">Liked!</p>
-        <a href="javascript: removeLike('${movie.imdbID}');" class="btn btn-outline-secondary">Dislike</a>
+        <a href="javascript: removeLike('${imdbID}');" class="btn btn-outline-secondary">Dislike</a>
     </div>
     `;
 }
@@ -111,7 +111,7 @@ function removeLike(imdbID) {
     const divparent = document.querySelector('#' + imdbID);
     divparent.querySelector(
         ".d-flex"
-    ).outerHTML = `<a href="javascript: addLike('${movie.imdbID}');" class="btn btn-primary">Like</a>`;
+    ).outerHTML = `<a href="javascript: addLike('${imdbID}');" class="btn btn-primary">Like</a>`;
     const likedMoviesView = document.querySelector("#likedMoviesView");
     if (likedMoviesView) {
         resultRow.innerHTML = `<div id="likedMoviesView" class="col-12"><h3>Liked Movies</h3></div>`;
@@ -133,3 +133,9 @@ buttonLikeds.onclick = function () {
         });
     }
 };
+
+buttonClean.onclick = function () {
+    resultRow.innerHTML = `<div class="col-12"><h3>Removing Movies...</h3></div>`;
+    localStorage.removeItem("jsapp.likeds");
+    likeds = []
+}
